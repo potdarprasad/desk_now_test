@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Home</title>
+    <%-include("../partials/headerFiles.ejs")%>
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&language=en"></script>
+    <style>
+        #map{
+            height: 80vh;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body ng-app="homeScreenApp" ng-controller="homeScreenAppCtrlr" ng-cloak>
+    <%-include("../partials/header.ejs")%>
+    <section class="container-fluid mt-4">
+        <div class="row">
+            <div class="col-12 col-md-10">
+                <div id="map"></div>
+            </div>
+            <div class="col-12 col-md-2">
+
+            </div>
+        </div>
+    </section>
+
+    <%-include("../partials/footer.ejs")%>
+</body>
+
+<%-include("../partials/bodyScripts.ejs")%>
+    <script src="ng-apps/home.js"></script>
+
+</html>

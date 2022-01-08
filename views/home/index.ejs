@@ -3,33 +3,38 @@
 
 <head>
     <title>Home</title>
-    <%-include("../partials/headerFiles.ejs")%>
-    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&language=en"></script>
-    <style>
-        #map{
-            height: 80vh;
-            margin-bottom: 20px;
-        }
-    </style>
+    <%-include(".. /partials/headerFiles.ejs")%>
+        <script src="http://maps.googleapis.com/maps/api/js?sensor=false&language=en"></script>
+        <style>
+            #map {
+                height: 80vh;
+                margin-bottom: 20px;
+            }
+        </style>
 </head>
 
 <body ng-app="homeScreenApp" ng-controller="homeScreenAppCtrlr" ng-cloak>
-    <%-include("../partials/header.ejs")%>
-    <section class="container-fluid mt-4">
-        <div class="row">
-            <div class="col-12 col-md-10">
-                <div id="map"></div>
+    <%-include(".. /partials/header.ejs")%>
+        <section class="container-fluid mt-4">
+            <div class="row">
+                <div class="col-12 col-md-10">
+                    <div id="map"></div>
+                </div>
+                <div class="col-12 col-md-2">
+                    <ul>
+                        <li>Red Circle: Booked Bookings</li>
+                        <li>Blue Circle: Vacant Bookings</li>
+                        <li>Red Arrow: Active Host</li>
+                        <li>Blue Arrow: Inactive Host</li>
+                    </ul>
+                </div>
             </div>
-            <div class="col-12 col-md-2">
+        </section>
 
-            </div>
-        </div>
-    </section>
-
-    <%-include("../partials/footer.ejs")%>
+        <%-include(".. /partials/footer.ejs")%>
 </body>
 
-<%-include("../partials/bodyScripts.ejs")%>
+<%-include(".. /partials/bodyScripts.ejs")%>
     <script src="ng-apps/home.js"></script>
 
 </html>

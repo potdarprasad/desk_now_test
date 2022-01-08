@@ -50,6 +50,27 @@ class HostController {
       return ApiRes.ErrorResponse(res, err.message);
     }
   };
+
+  /**
+   * Method To Update Host
+   * @param {*} req
+   * @param {*} res
+   * @returns
+   */
+  update = async (req, res) => {
+    try {
+      const { id } = req.params;
+      const data = req.body;
+
+      if (!id) return ApiRes.ErrorResponse(res, "Please Provide Host Id");
+
+      await Host.findOneAndUpdate({ id: id }, { $set: data }, { new: true });
+
+      return ApiRes.successResponse(res, "Host Updated Successfully");
+    } catch (err) {
+      return ApiRes.ErrorResponse(res, err.message);
+    }
+  };
 }
 
 module.exports = new HostController();

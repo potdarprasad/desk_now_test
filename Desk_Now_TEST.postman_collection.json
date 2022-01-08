@@ -96,6 +96,72 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Update Booking",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"guest_member_18i\",\r\n    \"status\": \"Booked\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/api/bookings/2067157078",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"bookings",
+						"2067157078"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Host",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"hostName\": \"Ashwoon\",\r\n    \"address\": \"Grosse Reichenstraße 7, 20457 Hamburg\",\r\n    \"property\": \"property_F\",\r\n    \"status\": \"Active\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/api/hosts/126346073",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"hosts",
+						"126346073"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

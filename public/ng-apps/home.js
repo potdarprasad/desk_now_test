@@ -23,12 +23,16 @@ app.service("googleMapsService", function () {
 
 app.controller("homeScreenAppCtrlr", [
   "$scope",
+  "$compile",
   "$http",
   "googleMapsService",
-  ($scope, $http, googleMapsService) => {
+  ($scope, $compile, $http, googleMapsService) => {
     //  Empty LatLngBounds object to allow map to automatically compute center of map
     const bounds = new google.maps.LatLngBounds();
-    const winInfo = new google.maps.InfoWindow();
+    $scope.infowindow = new google.maps.InfoWindow({
+      content: "",
+    });
+
     $scope.title = "Home Screen";
     $scope.bookings = [];
     $scope.hosts = [];
@@ -89,9 +93,9 @@ app.controller("homeScreenAppCtrlr", [
     );
 
     //Method To Edir
-    function edit() {
+    $scope.edit = () => {
       alert("hey");
-    }
+    };
 
     // Method To Setup Markers On Map
     const addMarkerOnMap = (
@@ -113,10 +117,7 @@ app.controller("homeScreenAppCtrlr", [
       //extend the bounds to include each marker's position
       bounds.extend(marker.position);
 
-      // Show Marker Details On Hover
-      marker.addListener("mouseover", (event) => {
-        winInfo.setContent(
-          `<div class='container-fluid'>
+      var content = `<div class='container-fluid'>
               <h5>Name: <span class="text-info">${info.name}</span></h5>
               ${
                 type === "hosts"
@@ -125,15 +126,24 @@ app.controller("homeScreenAppCtrlr", [
                   : ""
               }
               <h6>Status: <span class="text-info">${info.status}</span></h6>
-          </div>`
-        );
-        winInfo.setPosition(event.latLng);
-        winInfo.open({
-          anchor: marker,
-          map: $scope.gMap,
-          shouldFocus: true,
-        });
-      });
+              ${
+                type === "hosts"
+                  ? `<button class='btn btn-primary' ng-click="edit()">Edit</button>`
+                  : ""
+              }
+          </div>`;
+      var compiledContent = $compile(content)($scope);
+
+      google.maps.event.addListener(
+        marker,
+        "mouseover",
+        (function (marker, content, scope) {
+          return function () {
+            scope.infowindow.setContent(content);
+            scope.infowindow.open(scope.map, marker);
+          };
+        })(marker, compiledContent[0], $scope)
+      );
     };
 
     // Method To Add Data To Map

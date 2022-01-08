@@ -41,13 +41,32 @@ class BookingController {
           ? parseInt(pagination.totalRecords / pagination.recordsPerPage) + 1
           : pagination.totalRecords / pagination.recordsPerPage;
 
-          
       return ApiRes.successResponseWithData(res, "Bookings List", {
         bookings,
         pagination,
       });
     } catch (err) {
-      console.log(err.message);
+      return ApiRes.ErrorResponse(res, err.message);
+    }
+  };
+
+  /**
+   * Method To Update Booking
+   * @param {*} req
+   * @param {*} res
+   * @returns
+   */
+  update = async (req, res) => {
+    try {
+      const { id } = req.params;
+      const data = req.body;
+
+      if (!id) return ApiRes.ErrorResponse(res, "Please Provide Booking Id");
+
+      await Booking.findOneAndUpdate({ id: id }, { $set: data }, { new: true });
+
+      return ApiRes.successResponse(res, "Booking Updated Successfully");
+    } catch (err) {
       return ApiRes.ErrorResponse(res, err.message);
     }
   };

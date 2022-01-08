@@ -3,7 +3,7 @@
 
 <head>
     <title>Home</title>
-    <%-include(".. /partials/headerFiles.ejs")%>
+    <%-include("../partials/headerFiles.ejs")%>
         <script src="http://maps.googleapis.com/maps/api/js?sensor=false&language=en"></script>
         <style>
             #map {
@@ -14,7 +14,7 @@
 </head>
 
 <body ng-app="homeScreenApp" ng-controller="homeScreenAppCtrlr" ng-cloak>
-    <%-include(".. /partials/header.ejs")%>
+    <%-include("../partials/header.ejs")%>
         <section class="container-fluid mt-4">
             <div class="row">
                 <div class="col-12 col-md-10">
@@ -31,10 +31,10 @@
             </div>
         </section>
 
-        <%-include(".. /partials/footer.ejs")%>
+        <%-include("../partials/footer.ejs")%>
 </body>
 
-<%-include(".. /partials/bodyScripts.ejs")%>
+<%-include("../partials/bodyScripts.ejs")%>
     <script src="ng-apps/home.js"></script>
 
 </html>
